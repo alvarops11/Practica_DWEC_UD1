@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+</head>
+<body>
+    <form action="#" method="POST">
+        <!-- Nombre -->
+        <p>
+            <label for="nombre">Nombre:</label><br>
+            <input type="text" id="nombre" name="nombre" required>
+        </p>
+
+        <!-- Edad -->
+        <p>
+            <label for="edad">Edad:</label><br>
+            <input type="number" id="edad" name="edad" min="1" max="120" required>
+        </p>
+
+        <!-- Tipo -->
+        <p>
+            <label for="tipo">Tipo:</label><br>
+            <select id="tipo" name="tipo" required>
+                <option value="invitado">Invitado</option>
+                <option value="estudiante">Estudiante</option>
+                <option value="profesional">Profesional</option>
+            </select>
+        </p>
+
+        <!-- Modalidad -->
+        <p>
+            <label>Modalidad:</label><br>
+            <input type="radio" id="presencial" name="modalidad" value="presencial" required>
+            <label for="presencial">Presencial</label><br>
+            
+            <input type="radio" id="online" name="modalidad" value="online">
+            <label for="online">Online</label><br>
+        </p>
+
+        <!-- Experiencia -->
+        <p>
+            <label for="experiencia">Experiencia:</label><br>
+            <textarea id="experiencia" name="experiencia" rows="4" cols="40" required></textarea>
+        </p>
+
+        <!-- Botón de Envío -->
+        <p>
+            <button type="submit">Enviar</button>
+        </p>
+
+    </form>
+</body>
+</html>

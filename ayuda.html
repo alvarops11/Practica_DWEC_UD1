@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayuda · Gestor de participantes</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./css/estilos.css">
+</head>
+<body>
+    <main class="contenedor ayuda">
+        <p class="ceja">GUÍA RÁPIDA</p>
+        <h1>Ayuda del gestor</h1>
+        <section class="panel">
+            <h2>Inscribir y administrar participantes</h2>
+            <p>Completa nombre, edad, tipo, modalidad y experiencia. El formulario valida los datos antes de incorporarlos. Cada tarjeta muestra sus clasificaciones y permite borrar la inscripción tras confirmar.</p>
+            <p>Usa la búsqueda por nombre y el filtro de modalidad. Las estadísticas siempre describen la colección completa. El área JSON permite exportarla o sustituirla con un array validado.</p>
+        </section>
+        <section class="panel">
+            <h2>Preferencias y panel en vivo</h2>
+            <p>Elige tema y tamaño de letra y guarda los cambios para intentar conservarlos durante 30 días mediante cookies. El panel incrustado recibe un resumen actualizado al cambiar la colección.</p>
+            <h3>Datos de este navegador</h3>
+            <dl class="datos-navegador">
+                <dt>Idioma preferido</dt><dd id="idioma"></dd>
+                <dt>Origen de la página</dt><dd id="origen"></dd>
+                <dt>Resolución de pantalla</dt><dd id="resolucion"></dd>
+            </dl>
+        </section>
+        <p><a href="./index.html">Volver al gestor</a></p>
+    </main>
+    <script type="module" src="./js/ayuda.js"></script>
+</body>
+</html>

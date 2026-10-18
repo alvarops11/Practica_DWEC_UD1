@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen del evento</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./css/estilos.css">
+    <script type="module" src="./js/panel.js"></script>
+</head>
+<body class="pagina-panel">
+    <main class="panel-resumen" aria-labelledby="tituloPanel">
+        <p class="ceja">ACTUALIZACIÓN EN VIVO</p>
+        <h1 id="tituloPanel">Resumen del evento</h1>
+        <p id="estadoPanel" role="status" aria-live="polite">Conectando con el gestor…</p>
+        <dl id="datosPanel" class="rejilla-estadisticas" hidden>
+            <div><dt>Total de inscritos</dt><dd id="totalPanel">0</dd></div>
+            <div><dt>Presenciales</dt><dd id="presencialPanel">0</dd></div>
+            <div><dt>Online</dt><dd id="onlinePanel">0</dd></div>
+        </dl>
+        <p id="ultimaInscripcion" class="texto-ayuda"></p>
+    </main>
+</body>
+</html>

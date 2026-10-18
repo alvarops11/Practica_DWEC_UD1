@@ -1,55 +1,89 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario</title>
+    <meta name="description" content="Gestor de inscripciones para un evento tecnológico">
+    <title>Gestor de participantes</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./css/estilos.css">
+    <script type="module" src="./js/app.js"></script>
 </head>
 <body>
-    <form action="#" method="POST">
-        <!-- Nombre -->
-        <p>
-            <label for="nombre">Nombre:</label><br>
-            <input type="text" id="nombre" name="nombre" required>
-        </p>
+    <header class="cabecera">
+        <div>
+            <p class="ceja">EVENTO TECNOLÓGICO</p>
+            <h1>Gestor de participantes</h1>
+            <p>Administra inscripciones, consulta estadísticas e intercambia datos.</p>
+        </div>
+        <div class="acciones-cabecera">
+            <button id="abrirAyuda" type="button" class="boton-secundario">Abrir ayuda</button>
+            <button id="cerrarAyuda" type="button" class="boton-secundario">Cerrar ayuda</button>
+            <p id="estadoAyuda" class="estado" role="status" aria-live="polite"></p>
+        </div>
+    </header>
 
-        <!-- Edad -->
-        <p>
-            <label for="edad">Edad:</label><br>
-            <input type="number" id="edad" name="edad" min="1" max="120" required>
-        </p>
+    <main class="contenedor">
+        <section class="panel" aria-labelledby="tituloAlta">
+            <div class="titulo-seccion"><div><p class="ceja">INSCRIPCIONES</p><h2 id="tituloAlta">Nuevo participante</h2></div></div>
+            <form id="formulario" novalidate>
+                <div class="rejilla-formulario">
+                    <p><label for="nombre">Nombre</label><input type="text" id="nombre" name="nombre" minlength="2" maxlength="60" autocomplete="name" required></p>
+                    <p><label for="edad">Edad</label><input type="number" id="edad" name="edad" min="0" max="120" step="1" required></p>
+                    <p><label for="tipo">Tipo de participante</label><select id="tipo" name="tipo" required><option value="estudiante">Estudiante</option><option value="profesional">Profesional</option><option value="invitado">Invitado</option></select></p>
+                    <fieldset><legend>Modalidad</legend><label class="opcion"><input type="radio" name="modalidad" value="presencial" required> Presencial</label><label class="opcion"><input type="radio" name="modalidad" value="online"> Online</label></fieldset>
+                    <p><label for="experiencia">Experiencia (0 a 10)</label><input type="number" id="experiencia" name="experiencia" min="0" max="10" step="any" required></p>
+                </div>
+                <p id="errores" class="mensaje mensaje-error" role="alert" aria-live="assertive"></p>
+                <button type="submit">Añadir participante</button>
+            </form>
+        </section>
 
-        <!-- Tipo -->
-        <p>
-            <label for="tipo">Tipo:</label><br>
-            <select id="tipo" name="tipo" required>
-                <option value="invitado">Invitado</option>
-                <option value="estudiante">Estudiante</option>
-                <option value="profesional">Profesional</option>
-            </select>
-        </p>
+        <section class="panel" aria-labelledby="tituloListado">
+            <div class="titulo-seccion"><div><p class="ceja">LISTADO</p><h2 id="tituloListado">Participantes inscritos</h2></div></div>
+            <div class="rejilla-filtros">
+                <p><label for="busqueda">Buscar por nombre</label><input type="search" id="busqueda" placeholder="Escribe un nombre"></p>
+                <p><label for="filtroModalidad">Filtrar por modalidad</label><select id="filtroModalidad"><option value="">Todas las modalidades</option><option value="presencial">Presencial</option><option value="online">Online</option></select></p>
+            </div>
+            <p id="estadoListado" class="estado" role="status" aria-live="polite"></p>
+            <div id="listado" class="rejilla-tarjetas"></div>
+        </section>
 
-        <!-- Modalidad -->
-        <p>
-            <label>Modalidad:</label><br>
-            <input type="radio" id="presencial" name="modalidad" value="presencial" required>
-            <label for="presencial">Presencial</label><br>
-            
-            <input type="radio" id="online" name="modalidad" value="online">
-            <label for="online">Online</label><br>
-        </p>
+        <section class="panel" aria-labelledby="tituloEstadisticas">
+            <div class="titulo-seccion"><div><p class="ceja">RESUMEN</p><h2 id="tituloEstadisticas">Estadísticas</h2></div></div>
+            <dl class="rejilla-estadisticas">
+                <div><dt>Total</dt><dd id="total">0</dd></div><div><dt>Menores de edad</dt><dd id="menores">0</dd></div><div><dt>Mayores de edad</dt><dd id="mayores">0</dd></div>
+                <div><dt>Edad media</dt><dd id="edadMedia">Sin datos</dd></div><div><dt>Edad mínima</dt><dd id="edadMinima">Sin datos</dd></div><div><dt>Edad máxima</dt><dd id="edadMaxima">Sin datos</dd></div>
+                <div><dt>Presenciales</dt><dd id="presencial">0</dd></div><div><dt>Online</dt><dd id="onlineTotal">0</dd></div><div><dt>Estudiantes</dt><dd id="estudiantes">0</dd></div>
+                <div><dt>Profesionales</dt><dd id="profesionales">0</dd></div><div><dt>Invitados</dt><dd id="invitados">0</dd></div><div><dt>Experiencia media presencial</dt><dd id="experienciaMediaPresencial">Sin datos</dd></div>
+                <div><dt>Primer menor de edad</dt><dd id="primerMenor">Ninguno</dd></div>
+            </dl>
+        </section>
 
-        <!-- Experiencia -->
-        <p>
-            <label for="experiencia">Experiencia:</label><br>
-            <textarea id="experiencia" name="experiencia" rows="4" cols="40" required></textarea>
-        </p>
+        <section class="panel" aria-labelledby="tituloDatos">
+            <div class="titulo-seccion"><div><p class="ceja">IMPORTAR Y EXPORTAR</p><h2 id="tituloDatos">Datos en formato JSON</h2></div></div>
+            <p class="texto-ayuda">Exporta la colección completa o pega un array JSON válido para sustituirla.</p>
+            <label for="datosJson">Colección de participantes</label>
+            <textarea id="datosJson" rows="10" spellcheck="false" aria-describedby="estadoJson"></textarea>
+            <div class="fila-botones"><button id="exportarJson" type="button" class="boton-secundario">Exportar colección</button><button id="importarJson" type="button">Importar colección</button></div>
+            <p id="estadoJson" class="estado" role="status" aria-live="polite"></p>
+        </section>
 
-        <!-- Botón de Envío -->
-        <p>
-            <button type="submit">Enviar</button>
-        </p>
+        <section class="panel" aria-labelledby="tituloPreferencias">
+            <div class="titulo-seccion"><div><p class="ceja">PREFERENCIAS</p><h2 id="tituloPreferencias">Apariencia</h2></div></div>
+            <div class="rejilla-formulario">
+                <p><label for="tema">Tema</label><select id="tema"><option value="claro">Claro</option><option value="oscuro">Oscuro</option></select></p>
+                <p><label for="tamanoLetra">Tamaño de letra</label><select id="tamanoLetra"><option value="normal">Normal</option><option value="grande">Grande</option></select></p>
+            </div>
+            <div class="fila-botones"><button id="guardarPreferencias" type="button">Guardar preferencias</button><button id="restablecerPreferencias" type="button" class="boton-secundario">Restablecer</button></div>
+            <p id="estadoPreferencias" class="estado" role="status" aria-live="polite"></p>
+        </section>
 
-    </form>
+        <section class="panel" aria-labelledby="tituloPanelEvento">
+            <div class="titulo-seccion"><div><p class="ceja">VISTA EN VIVO</p><h2 id="tituloPanelEvento">Panel del evento</h2></div></div>
+            <iframe id="panelEvento" src="./panel.html" title="Panel con el resumen actualizado de inscripciones" loading="lazy"></iframe>
+        </section>
+    </main>
+    <footer><p>Aplicación cliente ejecutada en el navegador · DWEC UD1</p></footer>
 </body>
 </html>
